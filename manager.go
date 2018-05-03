@@ -2,18 +2,18 @@ package webhook
 
 import (
 	"git.resultys.com.br/lib/lower/net/request"
-	"git.resultys.com.br/motor/webhook/channel"
+	"git.resultys.com.br/motor/resource"
 )
 
 // Manager struct
 type Manager struct {
-	channel *channel.Channel
+	resource *resource.Resource
 }
 
 // New cria manager
 func New(limit int) *Manager {
 	manager := &Manager{}
-	manager.channel = channel.New(limit)
+	manager.resource = resource.New(limit)
 
 	return manager
 }
@@ -24,7 +24,7 @@ func (manager *Manager) Trigger(url string, data interface{}) *Manager {
 		return manager
 	}
 
-	manager.channel.Alloc(func() {
+	manager.resource.Alloc(func() {
 		request.New(url).PostJSON(data)
 	})
 
