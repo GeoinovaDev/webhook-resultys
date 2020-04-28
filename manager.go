@@ -1,6 +1,7 @@
 package webhook
 
 import (
+	"git.resultys.com.br/lib/lower/exec"
 	"git.resultys.com.br/lib/lower/net/request"
 	"git.resultys.com.br/motor/resource"
 )
@@ -25,7 +26,12 @@ func (manager *Manager) Trigger(url string, data interface{}) *Manager {
 	}
 
 	manager.resource.Alloc(func() {
-		request.New(url).PostJSON(data)
+		exec.Tryx(3, func() {
+			msg, err := request.New(url).PostJSON(data)
+			if err != nil {
+				panic(msg)
+			}
+		})
 	})
 
 	return manager
