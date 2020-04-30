@@ -1,6 +1,7 @@
 package webhook
 
 import (
+	"git.resultys.com.br/lib/lower/exception"
 	"git.resultys.com.br/lib/lower/exec"
 	"git.resultys.com.br/lib/lower/net/request"
 	"git.resultys.com.br/motor/resource"
@@ -31,6 +32,8 @@ func (manager *Manager) Trigger(url string, data interface{}) *Manager {
 			if err != nil {
 				panic(msg)
 			}
+		}).Catch(func(err string) {
+			exception.Raise(err, exception.CRITICAL)
 		})
 	})
 
