@@ -26,16 +26,16 @@ func (manager *Manager) Trigger(url string, data interface{}) *Manager {
 		return manager
 	}
 
-	manager.resource.Alloc(func() {
-		exec.Tryx(3, func() {
-			msg, err := request.New(url).PostJSON(data)
-			if err != nil {
-				panic(msg)
-			}
-		}).Catch(func(err string) {
-			exception.Raise(err, exception.CRITICAL)
-		})
+	// manager.resource.Alloc(func() {
+	exec.Tryx(3, func() {
+		msg, err := request.New(url).PostJSON(data)
+		if err != nil {
+			panic(msg)
+		}
+	}).Catch(func(err string) {
+		exception.Raise(err, exception.CRITICAL)
 	})
+	// })
 
 	return manager
 }
