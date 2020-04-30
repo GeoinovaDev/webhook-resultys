@@ -34,7 +34,7 @@ func (m *Manager) Trigger(url string, data interface{}) *Manager {
 			if err != nil {
 				panic(msg)
 			}
-			m.logSuccess.Add(url)
+			// m.logSuccess.Add(url)
 		}).Catch(func(err string) {
 			exception.Raise(err, exception.CRITICAL)
 		})
