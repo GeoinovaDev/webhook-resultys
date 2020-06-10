@@ -30,7 +30,7 @@ func (m *Manager) Trigger(url string, data interface{}) *Manager {
 
 	m.resource.Alloc(func() {
 		exec.Tryx(3, func() {
-			msg, err := request.New(url).PostJSON(data)
+			msg, err := request.New(url).SetTimeout(5).PostJSON(data)
 			if err != nil {
 				panic(msg)
 			}
