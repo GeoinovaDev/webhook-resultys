@@ -1,11 +1,11 @@
 package webhook
 
 import (
-	"git.resultys.com.br/lib/lower/exception"
-	"git.resultys.com.br/lib/lower/exec"
-	"git.resultys.com.br/lib/lower/logfile"
-	"git.resultys.com.br/lib/lower/net/request"
-	"git.resultys.com.br/motor/resource"
+	"github.com/GeoinovaDev/lower-resultys/exception"
+	"github.com/GeoinovaDev/lower-resultys/exec"
+	"github.com/GeoinovaDev/lower-resultys/logfile"
+	"github.com/GeoinovaDev/lower-resultys/net/request"
+	"github.com/GeoinovaDev/resource-resultys"
 )
 
 // Manager struct
